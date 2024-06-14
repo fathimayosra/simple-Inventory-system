@@ -1,0 +1,55 @@
+class Product:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+
+    def display_info(self):
+        print(f"Name: {self.name},Price: {self.price}, Quantity:{self.quantity}")
+
+    def update_quantity(self,amount):
+        self.quantity +=amount
+
+    def calculate_value(self):
+        return self.price * self.quantity
+
+def main():
+    inventory =[]
+
+    while True:
+        print("1.Add Product")
+        print("2.Display IOnventory")
+        print("3.Update Quantity")
+        print("4.Calculate Total Value")
+        print("5.Exit")
+        choice =input("Choose an option:")
+
+        if choice =="1":
+            name=input("Enter the product name:")
+            price =float(input("Enter product price:"))
+            quantity = int(input("Enter product quantity:"))
+            product =Product(name,price,quantity)
+            inventory.append(product)
+        elif choice =="2":
+            for product in inventory:
+                product.display_info()
+        elif choice =="3":
+            name=input("Enter product name:")
+            amount =int(input("Enter amount to update:"))
+            for product in inventory:
+                if product.name ==name:
+                    product.update_quantity(amount)
+                    break
+
+        elif choice =="4":
+            total_value =sum(product.calculate_value()
+            for product in inventory:
+                print(f"Total Value: {total_value}")
+        elif choice =="5":
+            break
+
+        else:
+            print("Invalid choice.Please choose a valid option.")
+
+if __name__ == "__main__":
+    main()
